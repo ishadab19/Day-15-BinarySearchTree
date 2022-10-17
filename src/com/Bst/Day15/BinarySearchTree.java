@@ -30,30 +30,52 @@ public class BinarySearchTree {
 			root = new Node(data);
 			return root;
 		}
-		if(data < root.data)
+		if (data < root.data)
 			root.left = insertRec(root.left, data);
 		else
 			root.right = insertRec(root.right, data);
 		return root;
 
 	}
+
 	public void inOrder() {
 		inOrderRec(root);
-		
+
 	}
+
 	public void inOrderRec(Node root) {
-		if(root == null) 
+		if (root == null)
 			return;
 		inOrderRec(root.left);
-		System.out.println(root.data+" ");
+		System.out.println(root.data + " ");
 		inOrderRec(root.right);
 	}
+
 	public int size(Node root) {
-		if(root == null)
+		if (root == null)
 			return 0;
 		else
-			return (size(root.left)+1+size(root.right));
+			return (size(root.left) + 1 + size(root.right));
 	}
+
+	public boolean search(Node root, int input) {
+		if (root == null) {
+			return false;
+		}
+
+		if (root.data == input) {
+			return true;
+		}
+
+		boolean result1 = search(root.left, input);
+		if (result1 == true)
+			return true;
+
+		boolean result2 = search(root.right, input);
+		return result2;
+
+	}
+
 	public static void main(String[] args) {
 		BinarySearchTree tree = new BinarySearchTree();
 		tree.insert(56);
@@ -72,11 +94,17 @@ public class BinarySearchTree {
 		tree.inOrder();
 		System.out.println();
 		int size = tree.size(tree.root);
-		if(size == 13)
+		if (size == 13)
 			System.out.println("All elements are added");
 		else
 			System.out.println("Missing some elements");
 		
+		//checking data present or not
+		if (tree.search(tree.root, 55) != false) {
+			System.out.println("55 is present");
+		} else
+			System.out.println("55 is not  present");
+
 	}
-	
+
 }
