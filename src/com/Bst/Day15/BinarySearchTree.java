@@ -58,6 +58,6 @@ public class BinarySearchTree {
 		System.out.println();
 		tree.insert(70);
 		tree.inOrder();
-	}
+	} 
 	
 }
